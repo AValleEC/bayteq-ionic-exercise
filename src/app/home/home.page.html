@@ -12,19 +12,19 @@
       <ion-card-subtitle>Datos de Usuario:</ion-card-subtitle>
       <ion-list>
         <ion-item>
-          <ion-label >Correo:</ion-label>
+          <ion-label ><strong> Correo:</strong></ion-label>
           <ion-input slot="end" readonly="true">{{authUser?authUser.authEmail:''}}</ion-input>
         </ion-item>  
         <ion-item>
-          <ion-label >Edad:</ion-label>
+          <ion-label ><strong>Edad:</strong></ion-label>
           <ion-input slot="end" readonly="true">{{authUser?authUser.userData.dob.age:''}}</ion-input>
         </ion-item>  
         <ion-item>
-          <ion-label >Teléfono:</ion-label>
+          <ion-label><strong>Teléfono:</strong></ion-label>
           <ion-input slot="end" readonly="true">{{authUser?authUser.userData.phone:''}}</ion-input>
         </ion-item>    
         <ion-item>
-          <ion-label >Direccion:</ion-label>
+          <ion-label ><strong>Direccion:</strong></ion-label>
           <ion-textarea autogrow="true" slot="end" readonly="true">
             {{authUser?authUser.userData.location.street.name+'. '+authUser.userData.location.city:''}}
           </ion-textarea>

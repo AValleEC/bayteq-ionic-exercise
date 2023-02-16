@@ -60,7 +60,7 @@ export class LoginPage implements OnInit {
       return await this.alertService.errorAlert('Acceso Incorrecto', 'El Usuario no existe. Inténtelo de nuevo.');
     }            
     // Usuario autenticado. 
-    this.navCtrl.navigateRoot('home');
+    this.navCtrl.navigateRoot('tabs/home');
   }
 
 }
