@@ -1,9 +1,30 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
+<ion-content class="background">
+  <form [formGroup]="UserForm" (ngSubmit)="submit()">  
+    <ion-card class = "ion-no-padding setForm">
+      <img class = "center" src="../../assets/icon.png"/>
+        <ion-item no-lines  class = "center">
+          <ion-label>
+            <ion-icon name="man-outline"></ion-icon>
+          </ion-label>
+          <ion-input placeholder="Nombre de Usuario" class="ion-text-center" formControlName="username"></ion-input>
+          <ion-icon 
+            [name]="UserForm.controls['username'].errors?'close-circle-outline':'checkmark-circle-outline'" 
+            [color]="UserForm.controls['username'].errors?'danger':'success'">
+          </ion-icon>
+        </ion-item>  
+        <ion-item no-lines  class = "center">
+          <ion-label>
+            <ion-icon name="at-outline"></ion-icon>
+          </ion-label>
+          <ion-input placeholder="Email" class="ion-text-center" type="email" formControlName="email"></ion-input>
+          <ion-icon 
+            [name]="UserForm.controls['email'].errors?'close-circle-outline':'checkmark-circle-outline'" 
+            [color]="UserForm.controls['email'].errors?'danger':'success'">
+          </ion-icon>
+        </ion-item>
+        <ion-button [disabled]="!UserForm.valid" expand="block" fill="clear" color="secondary" type="submit">
+          Login
+        </ion-button>
+    </ion-card>  
+  </form>
 </ion-content>

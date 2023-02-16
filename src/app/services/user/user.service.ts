@@ -20,6 +20,7 @@ const nat = 'es';
 export class UserService {
 
   private userList : User[] = [];
+  private authUserId: number = -1;
 
   constructor(
     private httpCli: HttpClient
@@ -49,6 +50,16 @@ export class UserService {
 
   public getUserList():User[]{
     return this.userList;
+  }
+
+  public setAuthUser(username:string):boolean{
+    let id:number = this.userList.findIndex((user)=>{
+      if ((user.name.first+user.name.last).toLowerCase() == username.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f\s]/g,"")) return true;
+      else return false;
+    });
+    if (id < 0) return false;
+    this.authUserId = id;
+    return true;
   }
 
 
