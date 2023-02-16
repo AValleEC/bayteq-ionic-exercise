@@ -6,6 +6,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { User } from 'src/app/models/user';
 import { AuthUser } from 'src/app/models/authuser';
+import { AlertService } from '../alert/alert.service';
 
 const seed = 'a';
 const nat = 'es';
@@ -24,7 +25,8 @@ export class UserService {
   private authUser: AuthUser | null  = null; 
 
   constructor(
-    private httpCli: HttpClient
+    private httpCli: HttpClient,
+    private alertService:AlertService
   ) { }
 
   public fetchUsers(nrUsers:number = 50):Observable<DataSource>{
@@ -39,7 +41,11 @@ export class UserService {
       }
     ).pipe(
       tap(r =>{
-        if(r.results) this.userList = r.results;
+        if(r.results) {
+          this.userList = r.results;
+          // Definir a todo usuario como "No Favorito"ç
+          this.userList.forEach(u=>{u.favorite=false});
+        }
       }),
       catchError((e:HttpErrorResponse):Observable<any>=>{
         // TODO: Implementaciones de emergencia en caso de falla de conexion
@@ -68,6 +74,14 @@ export class UserService {
       authEmail: email
     };
     return true;
+  }
+
+  public async toggleFavorite(id:number){
+    let msg: string;
+    if(this.userList[id].favorite) msg = "Usuario eliminado de Favoritos";
+    else msg = "Usuario añadido a Favoritos";    
+    this.userList[id].favorite = !this.userList[id].favorite;
+    await this.alertService.warningAlert(msg);
   }
 
   public resetAuthUser(){

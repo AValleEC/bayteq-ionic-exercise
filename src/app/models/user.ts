@@ -22,4 +22,5 @@ import { Picture } from "./picture";
     id: Id;
     picture: Picture;
     nat: string;
+    favorite ?: boolean;
   }

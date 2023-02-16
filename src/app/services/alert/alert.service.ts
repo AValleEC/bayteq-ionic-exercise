@@ -29,6 +29,12 @@ export class AlertService {
     await this.show();    
   }
 
+  public async warningAlert(message:string){
+    this.msgBody = "<h1 class='alertTitleWarning'>Alerta</h1><h5>"+message+"</h5>";
+    this.msgButtons = buttonsOk;
+    await this.show();
+  }
+
   async logOut(){
     this.msgBody = "<h1 class='alertTitleWarning'>Confirmación</h1><h5>¿Está seguro que desea cerrar sesión?</h5>";
     this.msgButtons = [
