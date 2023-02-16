@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 
 export const buttonsOk = [
   {
@@ -19,12 +19,30 @@ export class AlertService {
 
 
   constructor(
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private navCtrl: NavController
   ) { }
   
   public async errorAlert(errorName:string, errorDescription: string){
     this.msgBody = "<h1 class='alertTitleError'>Error</h1><h5>"+errorName+"</h5><h6>"+errorDescription+"</h6>";
     this.msgButtons = buttonsOk;
+    await this.show();    
+  }
+
+  async logOut(){
+    this.msgBody = "<h1 class='alertTitleWarning'>Confirmación</h1><h5>¿Está seguro que desea cerrar sesión?</h5>";
+    this.msgButtons = [
+      {
+        text: 'Confirmar',
+        handler:() =>{
+          this.navCtrl.navigateRoot('');
+        }
+      },
+      {
+        text: 'Cancelar',
+        handler: ()=>{}
+      }
+    ]
     await this.show();    
   }
 

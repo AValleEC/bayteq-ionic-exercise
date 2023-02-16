@@ -23,6 +23,7 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
+    this.userService.resetAuthUser();
   }
 
   /**
@@ -54,7 +55,7 @@ export class LoginPage implements OnInit {
    * Case Insensitive
    */
   async submit(){
-    if (!this.userService.setAuthUser(this.UserForm.controls['username'].value)) {
+    if (!this.userService.setAuthUser(this.UserForm.controls['username'].value, this.UserForm.controls['email'].value)) {
       this.UserForm.controls['username'].reset();
       return await this.alertService.errorAlert('Acceso Incorrecto', 'El Usuario no existe. Inténtelo de nuevo.');
     }            

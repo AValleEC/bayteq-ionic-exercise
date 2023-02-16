@@ -1,3 +1,7 @@
+ion-content.background {
+  --background: url(../../assets/home.jpg) 0 0/100% 100% no-repeat;
+}
+
 #container {
   text-align: center;
 
@@ -24,4 +28,28 @@
 
 #container a {
   text-decoration: none;
+}
+
+ion-card {
+  border-radius:30px !important;
+  }
+
+.setForm{
+  transform: translateX(-50%) translateY(-50%);
+  top: 50%;
+  left: 62%;
+  position: absolute;
+  margin-top: -50px;
+  margin-left: -50px;
+  width: 85%;
+}
+
+.center{
+  margin-left: auto;
+  margin-right: auto;
+  display: block !important;
+}
+
+.colorTitulo{
+  color: aqua;
 }

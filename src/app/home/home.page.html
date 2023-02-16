@@ -1,20 +1,35 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-appbar title="Home"></app-appbar>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content class="background">
+  <ion-card class = "ion-no-padding setForm">
+    <ion-card-header>
+      <ion-item lines="none" detail="false">
+        <img class = "center" [src]="authUser?authUser.userData.picture.large:''"/>
+      </ion-item>
+      <ion-card-title class="ion-text-center">Hola, {{authUser?authUser.userData.name.first+' '+authUser.userData.name.last+'!':''}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-card-subtitle>Datos de Usuario:</ion-card-subtitle>
+      <ion-list>
+        <ion-item>
+          <ion-label >Correo:</ion-label>
+          <ion-input slot="end" readonly="true">{{authUser?authUser.authEmail:''}}</ion-input>
+        </ion-item>  
+        <ion-item>
+          <ion-label >Edad:</ion-label>
+          <ion-input slot="end" readonly="true">{{authUser?authUser.userData.dob.age:''}}</ion-input>
+        </ion-item>  
+        <ion-item>
+          <ion-label >Teléfono:</ion-label>
+          <ion-input slot="end" readonly="true">{{authUser?authUser.userData.phone:''}}</ion-input>
+        </ion-item>    
+        <ion-item>
+          <ion-label >Direccion:</ion-label>
+          <ion-textarea autogrow="true" slot="end" readonly="true">
+            {{authUser?authUser.userData.location.street.name+'. '+authUser.userData.location.city:''}}
+          </ion-textarea>
+        </ion-item>      
+      </ion-list>
+    </ion-card-content>
+  </ion-card>  
 </ion-content>

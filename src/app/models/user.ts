@@ -4,6 +4,7 @@
 
 import { DobOrRegistered } from "./doborregistered";
 import { Id } from "./id";
+import { Location } from "./location";
 import { Login } from "./login";
 import { Name } from "./name";
 import { Picture } from "./picture";

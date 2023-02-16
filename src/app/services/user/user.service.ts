@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { User } from 'src/app/models/user';
+import { AuthUser } from 'src/app/models/authuser';
 
 const seed = 'a';
 const nat = 'es';
@@ -20,7 +21,7 @@ const nat = 'es';
 export class UserService {
 
   private userList : User[] = [];
-  private authUserId: number = -1;
+  private authUser: AuthUser | null  = null; 
 
   constructor(
     private httpCli: HttpClient
@@ -52,14 +53,25 @@ export class UserService {
     return this.userList;
   }
 
-  public setAuthUser(username:string):boolean{
-    let id:number = this.userList.findIndex((user)=>{
+  public getAuthUser():AuthUser|null{
+    return this.authUser;
+  }
+
+  public setAuthUser(username:string, email: string):boolean{
+    let userFind = this.userList.find((user)=>{
       if ((user.name.first+user.name.last).toLowerCase() == username.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f\s]/g,"")) return true;
       else return false;
     });
-    if (id < 0) return false;
-    this.authUserId = id;
+    if (!userFind) return false;
+    this.authUser = {
+      userData: userFind,
+      authEmail: email
+    };
     return true;
+  }
+
+  public resetAuthUser(){
+    this.authUser = null;
   }
 
 
