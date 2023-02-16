@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from './services/user/user.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  constructor(
+    private userService: UserService
+  ) {
+    this.loadUsers();
+  }
+
+  private loadUsers(){
+    this.userService.fetchUsers().subscribe((r)=>{
+      // Posible gestion de carga inicial de Usuarios.
+      console.log(r);
+    });
+  }
 }
