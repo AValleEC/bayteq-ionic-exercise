@@ -81,7 +81,7 @@ export class UserService {
     if(this.userList[id].favorite) msg = "Usuario eliminado de Favoritos";
     else msg = "Usuario añadido a Favoritos";    
     this.userList[id].favorite = !this.userList[id].favorite;
-    await this.alertService.warningAlert(msg);
+    //await this.alertService.warningAlert(msg);
   }
 
   public resetAuthUser(){

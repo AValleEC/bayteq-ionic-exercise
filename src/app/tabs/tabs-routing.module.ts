@@ -25,6 +25,15 @@ const routes: Routes = [
             loadChildren: () => import('../list/list.module').then( m => m.ListPageModule)
           }
         ]
+      },
+      {
+        path: 'favorites',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../favorites/favorites.module').then( m => m.FavoritesPageModule)
+          }
+        ]
       }
     ]
   }
